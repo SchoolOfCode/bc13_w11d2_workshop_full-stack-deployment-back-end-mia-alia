@@ -19,9 +19,10 @@ router.post('/', async (req, res) => {
 	res.status(201).json({ success: true, payload: result });
 });
 
+//extend the backend  functionality to allow frontEnd to mark an item in the database as "completed"
 router.patch('/:id', async (req, res) => {
 	const id = req.params.id;
-	const completed = req.body;
+	const completed = req.body.completed;
 	const result = await patchListItem(id, completed);
 	res.status(200).json({ success: true, payload: result });
 });

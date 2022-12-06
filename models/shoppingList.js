@@ -19,13 +19,13 @@ export async function postListItem(listItem) {
 }
 
 //sending PATCH request to modify or toggle 'completed' to be true or false
-export async function patchListItem(id) {
+export async function patchListItem(id, completed) {
 	const data = await pool.query(
 		`UPDATE shopping 
-		SET completed = NOT completed 
-		where id = $1 
+		SET completed = $1
+		where id = $2
     	RETURNING *;`,
-		[id]
+		[id, completed]
 	);
 	return data.rows[0];
 }
