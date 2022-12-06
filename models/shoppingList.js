@@ -25,7 +25,7 @@ export async function patchListItem(id, completed) {
 		SET completed = $1
 		where id = $2
     	RETURNING *;`,
-		[id, completed]
+		[completed, id]
 	);
 	return data.rows[0];
 }
