@@ -3,6 +3,7 @@ import {
 	getShoppingList,
 	postListItem,
 	patchListItem,
+	deleteAll,
 } from '../models/shoppingList.js';
 
 const router = express.Router();
@@ -24,6 +25,11 @@ router.patch('/:id', async (req, res) => {
 	const id = req.params.id;
 	const completed = req.body.completed;
 	const result = await patchListItem(id, completed);
+	res.status(200).json({ success: true, payload: result });
+});
+
+router.delete('/', async (req, res) => {
+	const result = await deleteAll();
 	res.status(200).json({ success: true, payload: result });
 });
 
