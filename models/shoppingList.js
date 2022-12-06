@@ -32,6 +32,6 @@ export async function patchListItem(id, completed) {
 
 //deleting ITEM in database
 export async function deleteAll() {
-	const data = await pool.query(`DELETE FROM shopping RETURNING *`);
+	const data = await pool.query(`DELETE FROM shopping RETURNING *;`);
 	return data.rows[0];
 }
